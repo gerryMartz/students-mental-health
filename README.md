@@ -101,4 +101,23 @@ Requirements: PostgreSQL 17 and `psql`. Run everything from the repository root.
 
 ## Findings
 
-To do: complete once the analysis is finished.
+Average scores for international students by length of stay (years with at least 14 students):
+
+| Stay (years) | Students | Depression (PHQ-9) | Social connectedness (SCS) | Acculturative stress (ASISS) |
+|---|---|---|---|---|
+| 1 | 95 | 7.48 | 38.11 | 72.80 |
+| 2 | 39 | 8.28 | 37.08 | 77.67 |
+| 3 | 46 | 9.09 | 37.13 | 78.00 |
+| 4 | 14 | 8.57 | 33.93 | 87.71 |
+
+- **Depression:** the average is higher at 4 years than at 1 year, but it does not rise steadily: it peaks at year 3 and dips slightly at year 4.
+- **Social connectedness:** it tends to decrease with length of stay. It is almost flat between years 2 and 3, and the sharpest drop appears at year 4.
+- **Acculturative stress:** it increases with length of stay and has the largest jump between years 3 and 4 (from 78.00 to 87.71).
+
+In short, the largest change in all three scores appears at year 4, consistent with longer stays being associated with worse outcomes for international students.
+
+### Limitations
+
+- Stays of 5 years or more have between 1 and 3 students each, so their averages are not reliable and are not interpreted here.
+- The 4-year group has only 14 students, so its averages are the most sensitive to individual cases.
+- These are descriptive averages of different students at a single point in time, not a follow-up of the same people. No statistical test was run, so the results show an association, not a cause.
