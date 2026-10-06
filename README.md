@@ -93,7 +93,11 @@ Requirements: PostgreSQL 17 and `psql`. Run everything from the repository root.
 
    Expected output: `COPY 286`.
 
-4. To do: run the remaining scripts in `queries/` in order.
+4. Run the analysis:
+
+```bash
+   psql -d students_mental_health -f queries/02_stay_analysis.sql
+```
 
 ## Findings
 
