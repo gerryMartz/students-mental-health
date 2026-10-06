@@ -57,7 +57,7 @@ Table `students`, with one row per surveyed student and 51 columns. The columns 
 - The CSV has 286 rows: 201 international (`Inter`), 67 domestic (`Dom`), and 18 with an empty `inter_dom`.
 - `index` comes from the export and is not part of the original data.
 - Rows with an empty `inter_dom` are excluded from the analysis, which filters on `inter_dom = 'Inter'`.
-- The raw table stores every column as `TEXT`, and empty values are loaded as empty strings, not `NULL`. Type casting and cleaning happen in later scripts.
+- The raw table stores every column as `TEXT`, and empty values are loaded as empty strings, not `NULL`. The analysis query converts empty strings to `NULL` and casts the columns it needs to integers.
 
 - **Data source:** to be documented (original study and link).
 - **Note:** the data comes from a DataCamp exercise; the analysis and queries in this repository are my own.
@@ -85,10 +85,10 @@ Requirements: PostgreSQL 17 and `psql`. Run everything from the repository root.
    psql -d students_mental_health -f queries/01_create_raw_table.sql
 ```
 
-3. Load the CSV into the raw table (`\copy` is a `psql` command and must be a single line):
+3. Load the CSV into the raw table:
 
 ```bash
-   psql -d students_mental_health -c "\copy students_raw FROM 'data/raw/students.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')"
+   psql -d students_mental_health -f queries/02_load_raw_data.sql
 ```
 
    Expected output: `COPY 286`.
@@ -96,7 +96,7 @@ Requirements: PostgreSQL 17 and `psql`. Run everything from the repository root.
 4. Run the analysis:
 
 ```bash
-   psql -d students_mental_health -f queries/02_stay_analysis.sql
+   psql -d students_mental_health -f queries/03_stay_analysis.sql
 ```
 
 ## Findings
@@ -114,7 +114,7 @@ Average scores for international students by length of stay (years with at least
 - **Social connectedness:** it tends to decrease with length of stay. It is almost flat between years 2 and 3, and the sharpest drop appears at year 4.
 - **Acculturative stress:** it increases with length of stay and has the largest jump between years 3 and 4 (from 78.00 to 87.71).
 
-In short, the largest change in all three scores appears at year 4, consistent with longer stays being associated with worse outcomes for international students.
+In short, the largest change in all three scores appears at year 4, which is also the smallest group analyzed.
 
 ### Limitations
 
